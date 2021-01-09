@@ -9,6 +9,7 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   double latitude, longitude, restlat, restlong;
+  String _homeloc = "Searching...";
   Position _currentPosition;
 
   @override
@@ -25,8 +26,14 @@ class _MainScreenState extends State<MainScreen> {
       ),
       body: Center(
         child: Container(
-          child: Text('Hello World'),
-        ),
+            child: Padding(
+                padding: EdgeInsets.all(10),
+                child: SingleChildScrollView(
+                    child: Column(
+                  children: [
+                    Text(_homeloc),
+                  ],
+                )))),
       ),
     );
   }
@@ -38,6 +45,21 @@ class _MainScreenState extends State<MainScreen> {
           .getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
           .then((Position position) async {
         _currentPosition = position;
+        if (_currentPosition != null) {
+          final coordinates = new Coordinates(
+              _currentPosition.latitude, _currentPosition.longitude);
+          var addresses =
+              await Geocoder.local.findAddressesFromCoordinates(coordinates);
+          setState(() {
+            var first = addresses.first;
+            _homeloc = first.addressLine;
+            if (_homeloc != null) {
+              latitude = _currentPosition.latitude;
+              longitude = _currentPosition.longitude;
+              return;
+            }
+          });
+        }
       }).catchError((e) {
         print(e);
       });
