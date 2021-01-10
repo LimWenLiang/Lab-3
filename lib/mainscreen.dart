@@ -98,7 +98,7 @@ class _MainScreenState extends State<MainScreen> {
                                         color: Colors.white, fontSize: 14),
                                     children: [
                                   TextSpan(
-                                      text: "Logitude: ",
+                                      text: "Longitude: ",
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold)),
                                   TextSpan(
