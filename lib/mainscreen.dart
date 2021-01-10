@@ -34,11 +34,14 @@ class _MainScreenState extends State<MainScreen> {
     screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
         appBar: AppBar(
-          title: Text('Location Detector'),
-        ),
+            title: Text('Location Detector',
+                style: TextStyle(color: Colors.white)),
+            backgroundColor: Colors.transparent,
+            elevation: 0),
+        extendBodyBehindAppBar: true,
         body: Center(
           child: Padding(
-            padding: EdgeInsets.all(10),
+            padding: EdgeInsets.only(top: 60, left: 10, right: 10, bottom: 10),
             child: SingleChildScrollView(
                 child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -48,11 +51,13 @@ class _MainScreenState extends State<MainScreen> {
                     ? Container(
                         child: Text(titleCenter,
                             style: TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold)),
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold)),
                       )
                     : Column(children: [
                         Container(
-                          height: screenHeight - 220,
+                          height: screenHeight - 200,
                           width: screenWidth - 10,
                           child: GoogleMap(
                               mapType: MapType.normal,
@@ -73,7 +78,7 @@ class _MainScreenState extends State<MainScreen> {
                             RichText(
                                 text: TextSpan(
                                     style: TextStyle(
-                                        color: Colors.black, fontSize: 14),
+                                        color: Colors.white, fontSize: 14),
                                     children: [
                                   TextSpan(
                                       text: "Latitude: ",
@@ -90,7 +95,7 @@ class _MainScreenState extends State<MainScreen> {
                             RichText(
                                 text: TextSpan(
                                     style: TextStyle(
-                                        color: Colors.black, fontSize: 14),
+                                        color: Colors.white, fontSize: 14),
                                     children: [
                                   TextSpan(
                                       text: "Logitude: ",
@@ -108,6 +113,7 @@ class _MainScreenState extends State<MainScreen> {
                               Text("Address: ",
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
+                                      color: Colors.white,
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold)),
                             ]),
@@ -115,6 +121,7 @@ class _MainScreenState extends State<MainScreen> {
                         ),
                         Text(_homeloc,
                             style: TextStyle(
+                              color: Colors.white,
                               fontSize: 14,
                             )),
                       ])
@@ -144,6 +151,16 @@ class _MainScreenState extends State<MainScreen> {
             if (_homeloc != null) {
               latitude = _currentPosition.latitude;
               longitude = _currentPosition.longitude;
+              markers.add(Marker(
+                markerId: markerId1,
+                position: LatLng(latitude, longitude),
+                infoWindow: InfoWindow(
+                  title: 'Location',
+                  snippet: 'Your Location',
+                ),
+                icon: BitmapDescriptor.defaultMarkerWithHue(
+                    BitmapDescriptor.hueViolet),
+              ));
               return;
             }
           });

@@ -12,7 +12,8 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: new ThemeData(primarySwatch: Colors.deepPurple),
+      theme: new ThemeData(
+          primarySwatch: Colors.deepPurple, scaffoldBackgroundColor: Colors.black),
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: Center(
@@ -21,7 +22,10 @@ class _SplashScreenState extends State<SplashScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text('Lab 3\nLim Wen Liang\n261938',
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold),
                   textAlign: TextAlign.center),
               SizedBox(height: 15),
               new ProgressIndicator(),
