@@ -10,7 +10,7 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  double screenHeight, screenWidth, latitude, longitude, restlat, restlong;
+  double screenHeight, screenWidth, latitude, longitude;
   String titleCenter = "Loading Map...";
   String _homeloc = "";
   String _latitude = "";
